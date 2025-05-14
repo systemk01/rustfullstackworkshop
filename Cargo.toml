@@ -1,0 +1,15 @@
+[package]
+name = "rustfullstackworkshop"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+
+
+[workspace]
+members = [
+    "api/lib",
+    "api/shuttle",
+    "shared"
+]
+resolver = "2"
