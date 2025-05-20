@@ -1,26 +1,9 @@
-use actix_web::{HttpResponse, get};
+use actix_web::{get, web::{self, ServiceConfig}, HttpResponse};
 
-/*
-#[get("/")]
-async fn hello_world() -> &'static str {
-    "Hello World hey carlo!"
+pub fn service(cfg: &mut ServiceConfig) {
+    cfg.route("/health", web::get().to(health));
 }
-
-#[get("/version")]
-async fn version(db: actix_web::web::Data<sqlx::PgPool>) -> String {
-    tracing::info!("Getting version");
-    let result: Result<String, sqlx::Error> = sqlx::query_scalar("SELECT version()")
-        .fetch_one(db.get_ref())
-        .await;
-
-    match result {
-        Ok(version) => version,
-        Err(e) => format!("Error: {:?}", e),
-    }
-}
-*/
-
-#[get("/health")]
+/// Health check endpoint
 async fn health() -> HttpResponse {
     tracing::info!("Getting health");
     HttpResponse::Ok()
