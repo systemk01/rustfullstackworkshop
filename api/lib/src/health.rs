@@ -1,4 +1,7 @@
-use actix_web::{web::{self, ServiceConfig}, HttpResponse};
+use actix_web::{
+    HttpResponse,
+    web::{self, ServiceConfig},
+};
 pub const API_VERSION: &str = "v0.0.1";
 
 pub fn service(cfg: &mut ServiceConfig) {
@@ -12,10 +15,6 @@ async fn health() -> HttpResponse {
         .finish()
 }
 
-
-
-
-
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -26,10 +25,7 @@ mod tests {
         let res = health().await;
         assert_eq!(res.status(), StatusCode::OK);
         assert_eq!(res.status().is_success(), true);
-        let data = res
-        .headers()
-        .get("version")
-        .and_then(|v| v.to_str().ok());
+        let data = res.headers().get("version").and_then(|v| v.to_str().ok());
         assert_eq!(data, Some(API_VERSION));
     }
 }

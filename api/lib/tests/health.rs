@@ -1,5 +1,5 @@
-use actix_web::{http::StatusCode, App};
-use api_lib::health::{service, API_VERSION};
+use actix_web::{App, http::StatusCode};
+use api_lib::health::{API_VERSION, service};
 use reqwest::Client;
 
 /// Test for the health check endpoint from Rust Full Stack Workshop
@@ -8,16 +8,13 @@ async fn health_check_works() {
     let app = App::new().configure(service);
     let mut app = actix_web::test::init_service(app).await;
     let req = actix_web::test::TestRequest::get()
-    .uri("/health")
-    .to_request();
+        .uri("/health")
+        .to_request();
 
     let resp = actix_web::test::call_service(&mut app, req).await;
     assert_eq!(resp.status(), StatusCode::OK);
     assert_eq!(resp.status().is_success(), true);
-    let data = resp
-        .headers()
-        .get("version")
-        .and_then(|v| v.to_str().ok());
+    let data = resp.headers().get("version").and_then(|v| v.to_str().ok());
     assert_eq!(data, Some(API_VERSION));
 }
 
