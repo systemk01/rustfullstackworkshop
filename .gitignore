@@ -2,3 +2,5 @@
 Cargo.lock
 .shuttle*
 Secrets*.toml
+#ignore the static folder
+static/

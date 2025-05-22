@@ -1,4 +1,4 @@
-@host = http://localhost:8000
+@host = http://localhost:8000/api
 @film_id = 10b24748-36ee-11f0-98dd-2693e1ef05b7
 
 ### health
