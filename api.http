@@ -1,5 +1,6 @@
-@host = http://localhost:8000/api
-@film_id = 10b24748-36ee-11f0-98dd-2693e1ef05b7
+### @host = http://localhost:8000/api
+@host = https://carlo-web-4kpz.shuttle.app/api
+@film_id = c43352c6-37c5-11f0-beb5-0a71cda2cbf7
 
 ### health
 GET {{host}}/health HTTP/1.1
